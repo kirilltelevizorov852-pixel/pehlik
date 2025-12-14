@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pehlik - YouTube Каналы и Услуги</title>
+    <meta name="description" content="Профессиональные YouTube каналы старой регистрации, услуги активации функций. Рейтинг 5/5 на FunPay.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff0000;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero .avatar {
+            margin-bottom: 20px;
+        }
+
+        .hero .avatar-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero .experience {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .rating {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+        }
+
+        .hero .rating i {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+
+        .hero .rating span {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+            padding: 80px 0;
+            margin: -50px 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .service-card i {
+            font-size: 4rem;
+            color: #ff0000;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        /* Channels Section */
+        .channels {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .channels h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .channel-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .channel-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .channel-card .content {
+            padding: 1.5rem;
+        }
+
+        .channel-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .channel-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .channel-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .channel-card .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .reviews h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .rating-summary {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .rating-summary .big-rating {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff0000;
+            display: block;
+        }
+
+        .rating-summary .stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .rating-summary p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .review-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-info .rating {
+            color: #ffd700;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .review-detail {
+            font-size: 0.9rem;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer .social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        footer .social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ff0000;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .services-grid,
+            .channels-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Pehlik</div>
+            <ul class="nav-links">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#channels">Каналы</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="https://funpay.com/users/3073132/" target="_blank">FunPay</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>YouTube Каналы от Pehlik</h1>
+            <p>Профессиональные аккаунты старой регистрации с продвинутыми функциями и проверенной репутацией</p>
+            <div class="experience">Работаем с 2021 года • 295+ довольных клиентов</div>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>5.0 из 5</span>
+            </div>
+            <a href="#channels" class="btn">Посмотреть Каналы</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Наши Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube Каналы</h3>
+                    <p>Каналы старой регистрации 2006-2011 годов с видео, просмотрами и продвинутыми функциями</p>
+                    <div class="price">от 638 ₽</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Услуги YouTube</h3>
+                    <p>Активация функций канала, помощь с настройками и продвижением контента</p>
+                    <div class="price">от 570 ₽</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Гарантия Качества</h3>
+                    <p>Все аккаунты проверены, полная поддержка и возврат средств при проблемах</p>
+                    <div class="price">295+ отзывов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="channels" class="channels">
+        <div class="container">
+            <h2>Популярные Каналы</h2>
+            <div class="channels-grid">
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #ff6b6b, #ffa500); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2006</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2006 год</span>
+                            <span class="feature">35k+ просмотров</span>
+                            <span class="feature">2 функции</span>
+                        </div>
+                        <h3>Канал старой регистрации</h3>
+                        <p>Канал 2006 года с органическими просмотрами и видео контентом</p>
+                        <div class="price">2438 ₽</div>
+                    </div>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2007</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2007 год</span>
+                            <span class="feature">2.6k+ просмотров</span>
+                            <span class="feature">Shorts</span>
+                        </div>
+                        <h3>Канал с Shorts</h3>
+                        <p>Канал 2007 года с функцией Shorts и свежим контентом</p>
+                        <div class="price">754 ₽</div>
+                    </div>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2008</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2008 год</span>
+                            <span class="feature">3 функции</span>
+                            <span class="feature">Продвинутый</span>
+                        </div>
+                        <h3>Продвинутый канал</h3>
+                        <p>Канал 2008 года с максимальным количеством функций</p>
+                        <div class="price">1799 ₽</div>
+                    </div>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2025</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2025 год</span>
+                            <span class="feature">50k+ подписчиков</span>
+                            <span class="feature">Roblox</span>
+                        </div>
+                        <h3>Roblox канал</h3>
+                        <p>Популярный канал по Roblox с большой аудиторией</p>
+                        <div class="price">21 001 ₽</div>
+                    </div>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2009</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2009 год</span>
+                            <span class="feature">3 функции</span>
+                            <span class="feature">Beauty</span>
+                        </div>
+                        <h3>Beauty канал</h3>
+                        <p>Канал 2009 года в нише красоты и моды</p>
+                        <div class="price">1799 ₽</div>
+                    </div>
+                </div>
+                <div class="channel-card">
+                    <div class="channel-image" style="background: linear-gradient(135deg, #fa709a, #fee140); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">2025</div>
+                    <div class="content">
+                        <div class="features">
+                            <span class="feature">2025 год</span>
+                            <span class="feature">410k+ просмотров</span>
+                            <span class="feature">Военный</span>
+                        </div>
+                        <h3>Военный канал</h3>
+                        <p>Канал с военным контентом и множеством просмотров</p>
+                        <div class="price">870 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>Отзывы Клиентов</h2>
+            <div class="rating-summary">
+                <div class="big-rating">5.0</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>На основе 295 отзывов за 5 лет</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"гуд"</p>
+                    <div class="review-detail">YouTube, 3000 ₽</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Отличный продавец"</p>
+                    <div class="review-detail">YouTube, 2000 ₽</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Один из лучших!"</p>
+                    <div class="review-detail">YouTube, 10000 ₽</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"продавец наивысшего состояния тела и духа"</p>
+                    <div class="review-detail">YouTube, 900 ₽</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"все супер, продавец красавчик"</p>
+                    <div class="review-detail">YouTube, 4000 ₽</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">К</div>
+                        <div class="review-info">
+                            <h4>Клиент</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Рекомендую!"</p>
+                    <div class="review-detail">YouTube, 5000 ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Готовы начать?</h2>
+            <p>Свяжитесь со мной на FunPay для заказа YouTube каналов и услуг</p>
+            <a href="https://funpay.com/users/3073132/" target="_blank" class="btn">Перейти на FunPay</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pehlik. Все права защищены.</p>
+            <div class="social">
+                <a href="https://funpay.com/users/3073132/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
